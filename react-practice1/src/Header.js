@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
         <nav style={{ background: '#8fbeda' }}>
             <div className="nav-wrapper">
-                <a href="/teste" className="brand-logo">Livraria Lufe</a>
+                <Link to="/" className="brand-logo">Cultura</Link>
                 <ul className="right">
-                    <li><a href="/teste">Autores</a></li>
-                    <li><a href="/teste">Livros</a></li>
-                    <li><a href="/teste">Sobre</a></li>
+                    <li><Link to='/autores'>Autores</Link></li>
+                    <li><Link to='/livros'>Livros</Link></li>
+                    <li><Link to='/sobre'>Sobre</Link></li>
                 </ul>
             </div>
         </nav>

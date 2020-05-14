@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
+import FormValidator from './FormValidator';
+import PopUp from './PopUp';
 
 class Form extends Component {
     constructor(props) {
         super(props);
 
+        this.validator = new FormValidator([
+            {
+                campo: 'nome',
+                metodo: 'isEmpty',
+                certifica: false,
+                mensagem: 'Escreva um nome válido'
+            },
+            {
+                campo: 'livro',
+                metodo: 'isEmpty',
+                certifica: false,
+                mensagem: 'Escreva um livro válido'
+            },
+            {
+                campo: 'preco',
+                metodo: 'isInt',
+                certifica: true,
+                args: [{ min: 0, max: 9999 }],
+                mensagem: 'Digite um preço válido'
+            },
+        ]);
+
         this.stateInicial = {
             nome: '',
             livro: '',
             preco: '',
+            validacao: this.validator.validateAll(),
         }
         this.state = this.stateInicial;
     }
@@ -19,9 +44,22 @@ class Form extends Component {
 
     }
     submitForm = () => {
-        console.log(this.state)
-        this.props.submitListener(this.state);
-        this.setState(this.stateInicial);
+        const validacao = this.validator.valida(this.state);
+
+        if (validacao.isValid) {
+            this.props.submitListener(this.state);
+            this.setState(this.stateInicial);
+        } else {
+            const { nome, livro, preco } = validacao;
+            const campos = [nome, livro, preco];
+
+            const camposInvalidos = campos.filter(x => {
+                return x.isInvalid;
+            });
+            camposInvalidos.forEach(campo => {
+                PopUp.showMessage('error', campo.message);
+            });
+        }
     }
     render() {
         const { nome, livro, preco } = this.state;

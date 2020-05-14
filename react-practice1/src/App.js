@@ -4,6 +4,8 @@ import './App.css';
 import Header from './Header';
 import Tabela from './Tabela';
 import Form from './Form';
+import PopUp from './PopUp';
+import router from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -40,16 +42,21 @@ class App extends Component {
           return posAtual !== index;
         }),
       }
-    )
+    );
+    PopUp.showMessage('sucess', 'Livro removido com sucesso');
+
   }
   submitListener = autor => {
     this.setState({ autores: [...this.state.autores, autor] })
+    PopUp.showMessage('sucess', 'Dados inserido com sucesso');
+
   }
   render() {
     return (
       <Fragment>
         <Header />
         <div className="container mb-10">
+          <h1>Livraria Cultura</h1>
           <Tabela autores={this.state.autores} removeAutor={this.removeAutor} />
           <Form submitListener={this.submitListener} />
         </div>
