@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
-import Header from './Header';
+import Header from './componets/Header';
 
 const Autores = () => {
     return (
         <Fragment>
             <Header />
-            <h1>Pagina de Autores</h1>
+            <h1>Página de Autores</h1>
         </Fragment>
     )
 }

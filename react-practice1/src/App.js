@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
 import './App.css';
-import Header from './Header';
-import Tabela from './Tabela';
-import Form from './Form';
-import PopUp from './PopUp';
+import Header from './componets/Header';
+import Tabela from './componets/Tabela';
+import Form from './componets/Form';
+import PopUp from './componets/PopUp';
 import router from 'react-router-dom';
 
 class App extends Component {

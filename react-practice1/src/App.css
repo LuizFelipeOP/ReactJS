@@ -41,3 +41,12 @@
   margin-bottom: 1em;
 
 }
+.listCentered{
+text-align: center;
+}
+.captionListTitle{
+  text-align: center;
+}
+.listCentered > li{
+  text-align: center;
+}
