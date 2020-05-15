@@ -5,53 +5,48 @@ import Header from './componets/Header';
 import Tabela from './componets/Tabela';
 import Form from './componets/Form';
 import PopUp from './componets/PopUp';
-import router from 'react-router-dom';
+import ApiService from './ApiService';
 
 class App extends Component {
-  state = {
-    autores: [
-      {
-        nome: 'Marcos',
-        livro: 'Desenv Web',
-        preco: '50'
-      },
-      {
-        nome: 'Felipe',
-        livro: 'React',
-        preco: '100'
-      },
-      {
-        nome: 'Luiz',
-        livro: 'Design',
-        preco: '150'
-      },
-      {
-        nome: 'Janes',
-        livro: 'PHP',
-        preco: '100'
-      }
-    ],
-  };
 
-  removeAutor = index => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      autores: [],
+    };
+  }
+
+  removeAutor = id => {
     const { autores } = this.state;
 
     this.setState(
       {
-        autores: autores.filter((autor, posAtual) => {
-          return posAtual !== index;
+        autores: autores.filter((autor) => {
+          return autor.id !== id;
         }),
       }
     );
     PopUp.showMessage('sucess', 'Livro removido com sucesso');
+    ApiService.RemoveAutor(id);
 
   }
   submitListener = autor => {
-    this.setState({ autores: [...this.state.autores, autor] })
-    PopUp.showMessage('sucess', 'Dados inserido com sucesso');
+    ApiService.Create(JSON.stringify(autor))
+      .then(res => res.data)
+      .then(autor => {
+        this.setState({ autores: [...this.state.autores, autor] })
+        PopUp.showMessage('sucess', 'Dados inserido com sucesso');
+      })
 
   }
+  componentDidMount() {
+    ApiService.Get()
+      .then(res => {
+        this.setState({ autores: [this.state.autores, ...res.data] })
+      })
+  }
   render() {
+
     return (
       <Fragment>
         <Header />

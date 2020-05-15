@@ -2,12 +2,11 @@ import React from 'react';
 
 const ListData = props => {
     let linhas = props.dados.map((elem =>
-        < ul className='listCentered' key={elem.id} >
-            <li key={elem.id}>{elem['livro']}</li>
-        </ul >
+        <h5 className='listItem'><li key={elem.id}>{elem[props.param]}</li></h5>
+
     ))
     return (
-        <ul>
+        <ul className='container listCentered'>
             <h3 className="captionListTitle">{props.titulo}</h3>
             {linhas}
         </ul>

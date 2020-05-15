@@ -1,39 +1,21 @@
 import React, { Component, Fragment } from 'react';
 import Header from './componets/Header';
-import App from './App';
 import ListData from './componets/ListData';
+import ApiService from './ApiService';
 
 class Livros extends Component {
-    state = {
-        autores: [
-            {
-                nome: 'Marcos',
-                livro: 'Desenv Web',
-                preco: '50'
-            },
-            {
-                nome: 'Felipe',
-                livro: 'React',
-                preco: '100'
-            },
-            {
-                nome: 'Luiz',
-                livro: 'Design',
-                preco: '150'
-            },
-            {
-                nome: 'Janes',
-                livro: 'PHP',
-                preco: '100'
-            }
-        ],
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            autores: [],
+        };
+    }
 
-    getLivros = () => {
-        let dados = this.state.autores.map((elem) =>
-            <li key={elem.id}>{elem.livro}</li>
-        );
-        return dados;
+    componentDidMount() {
+        ApiService.ListLivros()
+            .then(res => {
+                this.setState({ autores: [this.state.autores, ...res.data] })
+            })
     }
     render() {
 
@@ -41,7 +23,7 @@ class Livros extends Component {
             <Fragment>
                 <Header />
                 <h1 >Página de Livros</h1>
-                <ListData titulo={'Livros disponíveis'} dados={this.state.autores} />
+                <ListData titulo={'Livros disponíveis'} dados={this.state.autores} param={['livro']} />
             </Fragment>
         )
     }

@@ -42,11 +42,16 @@
 
 }
 .listCentered{
-text-align: center;
+  text-align: center;
 }
 .captionListTitle{
   text-align: center;
 }
-.listCentered > li{
-  text-align: center;
+.listCentered h5:hover{
+  background-color: #f3f3f3;
+  
+}
+.listCentered > .listItem{
+  padding: 20px 10px;
+  
 }
