@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './pages/Home';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Sobre from './Sobre';
-import Livros from './Livros';
-import Autores from './Autores';
-import NotFound from './NotFound';
+import Sobre from './pages/Sobre';
+import Livros from './pages/Livros';
+import Autores from './pages/Autores';
+import NotFound from './pages/NotFound';
 
 
 

@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import Header from './componets/Header';
-import ListData from './componets/ListData';
-import ApiService from './ApiService';
+import Header from '../componets/Header';
+import ListData from '../componets/ListData';
+import ApiService from '../ApiService';
+import PopUp from '../componets/PopUp';
 
 class Autores extends Component {
     constructor(props) {
@@ -13,8 +14,11 @@ class Autores extends Component {
     componentDidMount() {
         ApiService.ListNomes()
             .then(res => {
-                this.setState({ autores: [this.state.autores, ...res.data] })
+                if (res.message === 'success') {
+                    this.setState({ autores: [this.state.autores, ...res.data] })
+                }
             })
+            .catch(error => PopUp.showMessage('error', 'Falha ao comunicar com o servidor'));
     }
 
     render() {
