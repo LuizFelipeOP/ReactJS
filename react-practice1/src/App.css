@@ -55,3 +55,15 @@
   padding: 20px 10px;
   
 }
+
+/* header */
+.header-wrapper{
+  background-color: #fd7c21;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 100px;
+}
+.header-wrapper > .header-right-content {
+  padding-top: 60px;
+}

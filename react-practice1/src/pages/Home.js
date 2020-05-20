@@ -57,7 +57,7 @@ class App extends Component {
       <Fragment>
         <Header />
         <div className="container mb-10">
-          <h1>Livraria Cultura</h1>
+          <h1></h1>
           <Tabela autores={this.state.autores} removeAutor={this.removeAutor} />
           <Form submitListener={this.submitListener} />
         </div>
